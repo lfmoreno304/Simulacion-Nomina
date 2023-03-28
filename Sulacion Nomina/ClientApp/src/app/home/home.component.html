@@ -1,14 +1,74 @@
-<h1>Hello, world!</h1>
-<p>Welcome to your new single-page application, built with:</p>
-<ul>
-  <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-  <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-  <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-</ul>
-<p>To help you get started, we've also set up:</p>
-<ul>
-  <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-  <li><strong>Angular CLI integration</strong>. In development mode, there's no need to run <code>ng serve</code>. It runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-  <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration automatically invokes <code>ng build</code> to produce minified, ahead-of-time compiled JavaScript files.</li>
-</ul>
-<p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>
+<form class="mb-3" (ngSubmit)="onSubmit()">
+  <label for="exampleFormControlInput1" class="form-label">Ingrese el numero de profesores:</label>
+  <input type="number" class="form-control" id="TeacherCant" [formControl]="cant" placeholder="">
+  <br />
+  <button type="submit" class="form-control">Aceptar</button>
+</form>
+<br />
+<div class="mb-3">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Horas</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Posgrado</th>
+          <th scope="col">Grupo y/o semillero</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let teacher of teachers; let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>
+            <select class="form-select" aria-label="Type of teacher" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].type">
+              <option selected>Seleccione el tipo de profesor</option>
+              <option value="1">Ocasional</option>
+              <option value="2">Catedratico</option>
+            </select>
+          </td>
+          <td>
+            <input type="number" class="form-control" id="{{i}}" placeholder="Horas trabajadas" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].hours">
+          </td>
+          <td>
+            <select class="form-select" aria-label="Category of teacher" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].category">
+              <option selected>Seleccione la categoria del profesor</option>
+              <option value="1">Auxiliar de tiempo completo</option>
+              <option value="2">Auxiliar de medio tiempo</option>
+              <option value="3">Asistente de tiempo completo</option>
+              <option value="4">Asistente de medio tiempo</option>
+              <option value="5">Asociado de tiempo completo</option>
+              <option value="6">Asociado de medio tiempo</option>
+              <option value="7">Titular de tiempo completo</option>
+              <option value="8">Titular de medio tiempo</option>
+            </select>
+          </td>
+          <td>
+            <select class="form-select" aria-label="PostGraduate" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].postGraduate">
+              <option selected>Seleccione el posgrado del profesor</option>
+              <option value="1">Especializacion</option>
+              <option value="2">Maestria</option>
+              <option value="3">Doctorado</option>
+              <option value="4">Postdoctorado</option>
+            </select>
+          </td>
+          <td>
+            <select class="form-select" aria-label="Groups" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].group">
+              <option selected>Seleccione el grupo o semillero del profesor</option>
+              <option value="1">A1</option>
+              <option value="2">A</option>
+              <option value="3">B</option>
+              <option value="4">C</option>
+              <option value="5">Reconocido por colciencias</option>
+              <option value="6">Semillero</option>
+            </select>
+          </td>
+          <td>
+            <button type="submit" class="form-control" (click)="sendData(teacher, i)">Añadir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+</div>
