@@ -1,74 +1,81 @@
-<form class="mb-3" (ngSubmit)="onSubmit()">
-  <label for="exampleFormControlInput1" class="form-label">Ingrese el numero de profesores:</label>
-  <input type="number" class="form-control" id="TeacherCant" [formControl]="cant" placeholder="">
+<form class="mb-3" (ngSubmit)="onSubmit(teacher)">
+  <label for="Type of teacher" class="form-label">Seleccione el tipo de profesor</label>
+  <select class="form-select" aria-label="Type of teacher" [ngModelOptions]="{standalone: true}" [(ngModel)]="teacher.type">
+    
+    <option value="ocasional">Ocasional</option>
+    <option value="catedratico">Catedratico</option>
+  </select>
+  <label for="Horas trabajadas" class="form-label">Digite la horas trabajadas</label>
+  <input type="number" class="form-control" placeholder="Horas trabajadas" [ngModelOptions]="{standalone: true}" [(ngModel)]="teacher.hours">
+  <label for="Category of teacher" class="form-label">Seleccione la categoria del profesor</label>
+  <select class="form-select" aria-label="Category of teacher" [ngModelOptions]="{standalone: true}" [(ngModel)]="teacher.category">
+   
+    <option value="auxiliarT">Auxiliar de tiempo completo</option>
+    <option value="auxiliarM">Auxiliar de medio tiempo</option>
+    <option value="asistenteT">Asistente de tiempo completo</option>
+    <option value="asistenteM">Asistente de medio tiempo</option>
+    <option value="asociadoT">Asociado de tiempo completo</option>
+    <option value="asociadoM">Asociado de medio tiempo</option>
+    <option value="titularT">Titular de tiempo completo</option>
+    <option value="titularM">Titular de medio tiempo</option>
+  </select>
+  <label for="Category of teacher" class="form-label">Seleccione el posgrado del profesor</label>
+  <select class="form-select" aria-label="PostGraduate" [ngModelOptions]="{standalone: true}" [(ngModel)]="teacher.postGraduate">
+    <option value="">Sin posgrado</option>
+    <option value="especializacion">Especializacion</option>
+    <option value="maestria">Maestria</option>
+    <option value="doctorado">Doctorado</option>
+    <option value="postdoctorado">Postdoctorado</option>
+  </select>
+  <label for="Category of teacher" class="form-label">Seleccione el grupo o semillero que pertenece el profesor</label>
+  <select class="form-select" aria-label="Groups" [ngModelOptions]="{standalone: true}" [(ngModel)]="teacher.group">
+    <option value="A1">A1</option>
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
+    <option value="colciencias">Reconocido por colciencias</option>
+    <option value="semillero">Semillero</option>
+  </select>
   <br />
-  <button type="submit" class="form-control">Aceptar</button>
+  <button type="submit" class="form-control">Agregar</button>
 </form>
 <br />
 <div class="mb-3">
-  
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Tipo</th>
-          <th scope="col">Horas</th>
-          <th scope="col">Categoria</th>
-          <th scope="col">Posgrado</th>
-          <th scope="col">Grupo y/o semillero</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let teacher of teachers; let i=index">
-          <th scope="row">{{i+1}}</th>
-          <td>
-            <select class="form-select" aria-label="Type of teacher" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].type">
-              <option selected>Seleccione el tipo de profesor</option>
-              <option value="1">Ocasional</option>
-              <option value="2">Catedratico</option>
-            </select>
-          </td>
-          <td>
-            <input type="number" class="form-control" id="{{i}}" placeholder="Horas trabajadas" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].hours">
-          </td>
-          <td>
-            <select class="form-select" aria-label="Category of teacher" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].category">
-              <option selected>Seleccione la categoria del profesor</option>
-              <option value="1">Auxiliar de tiempo completo</option>
-              <option value="2">Auxiliar de medio tiempo</option>
-              <option value="3">Asistente de tiempo completo</option>
-              <option value="4">Asistente de medio tiempo</option>
-              <option value="5">Asociado de tiempo completo</option>
-              <option value="6">Asociado de medio tiempo</option>
-              <option value="7">Titular de tiempo completo</option>
-              <option value="8">Titular de medio tiempo</option>
-            </select>
-          </td>
-          <td>
-            <select class="form-select" aria-label="PostGraduate" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].postGraduate">
-              <option selected>Seleccione el posgrado del profesor</option>
-              <option value="1">Especializacion</option>
-              <option value="2">Maestria</option>
-              <option value="3">Doctorado</option>
-              <option value="4">Postdoctorado</option>
-            </select>
-          </td>
-          <td>
-            <select class="form-select" aria-label="Groups" (change)="sendData(teacher, i)" [ngModelOptions]="{standalone: true}" [(ngModel)]="teachers[i].group">
-              <option selected>Seleccione el grupo o semillero del profesor</option>
-              <option value="1">A1</option>
-              <option value="2">A</option>
-              <option value="3">B</option>
-              <option value="4">C</option>
-              <option value="5">Reconocido por colciencias</option>
-              <option value="6">Semillero</option>
-            </select>
-          </td>
-          <td>
-            <button type="submit" class="form-control" (click)="sendData(teacher, i)">Añadir</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Horas</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Posgrado</th>
+        <th scope="col">Grupo y/o semillero</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let teacher of teachers; let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>
+          {{teacher.type}}
+        </td>
+        <td>
+          {{teacher.hours}}
+        </td>
+        <td>
+          {{teacher.category}}
+        </td>
+        <td>
+          {{teacher.postGraduate}}
+        </td>
+        <td>
+          {{teacher.group}}
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <button type="button" class="btn btn-primary" (click)="sendData()">Simular</button>
+  <h1>El salario total es : {{salary}}</h1>
 </div>

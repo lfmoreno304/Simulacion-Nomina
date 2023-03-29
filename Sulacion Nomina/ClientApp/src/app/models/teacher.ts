@@ -1,7 +1,7 @@
 export interface Teacher {
-  type: number;
+  type: string;
   hours: number;
-  category: number;
-  postGraduate: number;
-  group: number;
+  category: string;
+  postGraduate: string;
+  group: string;
 }

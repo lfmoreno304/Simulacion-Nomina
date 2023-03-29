@@ -73,7 +73,7 @@
             },
             "development": {
               "browserTarget": "Sulacion_Nomina:build:development",
-              "proxyConfig": "proxy.conf.js"
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
